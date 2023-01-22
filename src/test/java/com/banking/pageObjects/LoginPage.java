@@ -1,6 +1,5 @@
 package com.banking.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,14 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 
 public class LoginPage extends PageObjects {
-
-    //public WebDriver driver;
-
-
+    public LoginPage(WebDriver driver){
+        super(driver);
+    }
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @FindBy(id="gdpr-consent-notice")
@@ -32,10 +29,11 @@ public class LoginPage extends PageObjects {
     @FindBy(name="btnLogin")
     @CacheLookup
     WebElement btnLogin;
+    @FindBy(xpath = "/html/body/div[3]/div/ul/li[15]/a")
+    @CacheLookup
+    WebElement logOutButton;
 
-    public LoginPage(WebDriver driver){
-        super(driver);
-    }
+
 
     public void acceptCookies(){
 
@@ -57,6 +55,7 @@ public class LoginPage extends PageObjects {
     public void clickSubmit(){
         this.btnLogin.click();
     }
+    public void clickLogOut(){this.logOutButton.click();}
 
 
 
